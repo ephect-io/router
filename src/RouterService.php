@@ -5,10 +5,10 @@ namespace Ephect\Modules\Routing;
 use Ephect\Forms\Components\Component;
 use Ephect\Framework\Registry\ComponentRegistry;
 use Ephect\Framework\Registry\HttpErrorRegistry;
-use Ephect\Framework\Registry\RouteRegistry;
 use Ephect\Framework\Utils\File;
 use Ephect\Framework\Utils\Text;
 use Ephect\Framework\Web\Request;
+use Ephect\Modules\Routing\Registry\RouteRegistry;
 use function Ephect\Hooks\useState;
 
 class RouterService implements RouterServiceInterface
