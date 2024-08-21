@@ -3,11 +3,11 @@
 namespace Ephect\Modules\Routing;
 
 use Ephect\Forms\Components\Component;
-use Ephect\Framework\Registry\ComponentRegistry;
-use Ephect\Framework\Registry\HttpErrorRegistry;
+use Ephect\Forms\Registry\ComponentRegistry;
 use Ephect\Framework\Utils\File;
 use Ephect\Framework\Utils\Text;
 use Ephect\Framework\Web\Request;
+use Ephect\Modules\Routing\Registry\HttpErrorRegistry;
 use Ephect\Modules\Routing\Registry\RouteRegistry;
 use function Ephect\Hooks\useState;
 
@@ -200,7 +200,7 @@ class RouterService implements RouterServiceInterface
 
         $request = new Request();
 
-        if(count($middlewares)) {
+        if (count($middlewares)) {
             foreach ($middlewares as $middleware) {
                 call_user_func($middleware);
             }
@@ -228,7 +228,7 @@ class RouterService implements RouterServiceInterface
 
         foreach ($methodRoutes as $rule => $settings) {
 
-            $stuff = (object) $settings;
+            $stuff = (object)$settings;
             $redirect = $stuff->redirect;
             $translation = $stuff->translate;
             $isExact = $stuff->exact;
@@ -292,7 +292,7 @@ class RouterService implements RouterServiceInterface
             $currentRoute = $methodRegistry[$route->getRule()];
             $middlewares = $currentRoute['middlewares'];
 
-            if(!empty($middlewares)) {
+            if (!empty($middlewares)) {
                 $methodRegistry[$route->getRule()] = [
                     'rule' => $route->getRule(),
                     'redirect' => $route->getRedirect(),
@@ -314,7 +314,7 @@ class RouterService implements RouterServiceInterface
                 'translate' => $route->getTranslation(),
                 'error' => $route->getError(),
                 'exact' => $route->isExact(),
-                'middlewares' =>$route->getMiddlewares(),
+                'middlewares' => $route->getMiddlewares(),
             ];
             RouteRegistry::write($route->getMethod(), $methodRegistry);
         }

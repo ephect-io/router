@@ -6,15 +6,17 @@ use Ephect\Forms\Components\ComponentEntityInterface;
 use Ephect\Forms\Middlewares\ComponentParserMiddlewareInterface;
 use Ephect\Framework\Registry\ComponentRegistry;
 use Ephect\Framework\Registry\RouteRegistry;
+use Ephect\Modules\Routing\Attributes\RouteMiddleware;
 use Ephect\Modules\Routing\RouteEntity;
 use Ephect\Modules\Routing\RouteStructure;
+use Exception;
 use ReflectionFunction;
 
 class RouteParserMiddleware implements ComponentParserMiddlewareInterface
 {
     public function parse(ComponentEntityInterface|null $parent, string $motherUID, string $funcName, string $props, array $arguments): void
     {
-        if($parent == null || $parent->getName() != 'Route') {
+        if ($parent == null || $parent->getName() != 'Route') {
             return;
         }
 
@@ -28,18 +30,18 @@ class RouteParserMiddleware implements ComponentParserMiddlewareInterface
 
         $isMiddleware = false;
         foreach ($attrs as $attr) {
-            $isMiddleware = $attr->getName() == \Ephect\Modules\Routing\Attributes\RouteMiddleware::class;
+            $isMiddleware = $attr->getName() == RouteMiddleware::class;
             if ($isMiddleware) {
                 break;
             }
         }
-        if(!count($attrs) || !$isMiddleware) {
-            throw new \Exception("$funcName is not a route middleware");
+        if (!count($attrs) || !$isMiddleware) {
+            throw new Exception("$funcName is not a route middleware");
         }
         RouteRegistry::load();
         $methodRegistry = RouteRegistry::read($route->getMethod()) ?: [];
 
-        if(isset($methodRegistry[$route->getRule()])) {
+        if (isset($methodRegistry[$route->getRule()])) {
             $methodRegistry[$route->getRule()]['middlewares'][] = $middlewareHtml;
         } else {
             $methodRegistry[$route->getRule()] = [
