@@ -11,8 +11,6 @@ class RouteBuilder extends AbstractBuilder
 
     public function __construct(object $props)
     {
-
-
         parent::__construct($props, RouteStructure::class);
     }
 
