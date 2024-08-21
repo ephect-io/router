@@ -12,7 +12,7 @@ function Route($children): string
     useEffect(function ($children, /* bool */ $onError, /* string */ $html) {
 
         $props = $children;
-        if(method_exists($children, "props")) {
+        if (method_exists($children, "props")) {
             $props = $children->props();
         }
 
