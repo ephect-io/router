@@ -4,8 +4,8 @@ namespace Ephect\Modules\Routing\Middlewares;
 
 use Ephect\Forms\Components\ComponentEntityInterface;
 use Ephect\Forms\Middlewares\ComponentParserMiddlewareInterface;
-use Ephect\Framework\Registry\ComponentRegistry;
-use Ephect\Framework\Registry\RouteRegistry;
+use Ephect\Forms\Registry\ComponentRegistry;
+use Ephect\Modules\Routing\Registry\RouteRegistry;
 use Ephect\Modules\Routing\Attributes\RouteMiddleware;
 use Ephect\Modules\Routing\RouteEntity;
 use Ephect\Modules\Routing\RouteStructure;

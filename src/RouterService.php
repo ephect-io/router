@@ -6,7 +6,7 @@ use Ephect\Forms\Components\Component;
 use Ephect\Forms\Registry\ComponentRegistry;
 use Ephect\Framework\Utils\File;
 use Ephect\Framework\Utils\Text;
-use Ephect\Framework\Web\Request;
+use Ephect\WebApp\Web\Request;
 use Ephect\Modules\Routing\Registry\HttpErrorRegistry;
 use Ephect\Modules\Routing\Registry\RouteRegistry;
 use function Ephect\Hooks\useState;
