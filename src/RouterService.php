@@ -9,7 +9,7 @@ use Ephect\Framework\Utils\Text;
 use Ephect\WebApp\Web\Request;
 use Ephect\Modules\Routing\Registry\HttpErrorRegistry;
 use Ephect\Modules\Routing\Registry\RouteRegistry;
-use function Ephect\Hooks\useState;
+use function Ephect\Hooks\useStateObject;
 
 class RouterService implements RouterServiceInterface
 {
@@ -157,7 +157,7 @@ class RouterService implements RouterServiceInterface
     public function findRoute(string &$html): void
     {
         $html = '';
-        [$state, $setState] = useState();
+        [$state, $setState] = useStateObject();
 
         if (!isset($state->routes)) {
             return;
@@ -184,7 +184,7 @@ class RouterService implements RouterServiceInterface
         $this->renderRoute($responseCode === 200, $path, $query, $error, $responseCode, $middlewares, $html);
     }
 
-    public function renderRoute(bool $pageFound, string $path, array $query, int $error, int $responseCode, array $middlewares, string &$html): void
+    public function renderRoute(bool $pageFound, string $path, array|object|null $query, int $error, int $responseCode, array $middlewares, string &$html): void
     {
         if (!$pageFound) {
             http_response_code($responseCode);
